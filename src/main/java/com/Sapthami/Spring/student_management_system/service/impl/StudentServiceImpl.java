@@ -1,10 +1,8 @@
 package com.Sapthami.Spring.student_management_system.service.impl;
 
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-
 import com.Sapthami.Spring.student_management_system.entity.Student;
 import com.Sapthami.Spring.student_management_system.repository.StudentRepository;
 import com.Sapthami.Spring.student_management_system.service.StudentService;
@@ -25,23 +23,22 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student saveStudent(Student student) {
-        return studentRepository.save(student);
+        return studentRepository.save(student);  // Saves student to the database
     }
 
     @Override
     public Student getStudentById(Long id) {
-        // Use Optional to handle the case where a student with the given ID does not exist
         Optional<Student> optionalStudent = studentRepository.findById(id);
         return optionalStudent.orElse(null);
     }
 
     @Override
     public Student updateStudent(Student student) {
-        // Save method in JPA repository will update the entity if it already exists
-        return studentRepository.save(student);
+        return studentRepository.save(student);  // Updates student in the database
     }
-    
+
+    @Override
     public void deleteStudentById(Long id) {
-        studentRepository.deleteById(id);
+        studentRepository.deleteById(id);  // Deletes student from the database
     }
 }
